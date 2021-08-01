@@ -5,6 +5,7 @@ public class Parent {
 
     }
 
+    @Deprecated
     public void otherMethod() {
         System.out.println("Doing old stuff...");
     }

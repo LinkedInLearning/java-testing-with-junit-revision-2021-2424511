@@ -1,2 +1,5 @@
-package annotations;public interface FunInterface {
+package annotations;
+
+public interface FunInterface {
+    void function();
 }

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestableCodeTest {
@@ -14,42 +15,31 @@ public class TestableCodeTest {
     @DisplayName("Test greeting special name")
     public void testSpecialNameGreeting() {
         String name = "Noah";
-        assertTrue(tc.greetUser(name).contains("VIP"));
+        String outcome = "I don't know you, Noah. But you are on our VIP list!";
+        assertEquals(outcome, tc.greetUser(name));
     }
 
     @Test
     @DisplayName("Test greeting special and known name")
     public void testSpecialAndKnownNameGreeting() {
         String name = "Tess";
-        assertTrue(tc.greetUser(name).contains("even"));
+        String outcome = "I know you, Tess.You're even on our VIP list!";
+        assertEquals(outcome, tc.greetUser(name));
     }
 
     @Test
     @DisplayName("Test greeting unknown name")
     public void testUnknownNameGreeting() {
         String name = "Sascha";
-        assertTrue(tc.greetUser(name).contains("stranger"));
+        String outcome = "stranger";
+        assertEquals(outcome, tc.greetUser(name));
     }
 
     @Test
     @DisplayName("Test part of the day greeting")
     public void testDayPart() {
-        String dayPart = "";
-        LocalDateTime dateTime = LocalDateTime.now();
-        if (dateTime.getHour() >= 0 && dateTime.getHour() < 6) {
-            dayPart += "Good night, ";
-        }
-        if (dateTime.getHour() >= 6 && dateTime.getHour() < 12) {
-            dayPart += "Good morning,";
-
-        }
-        if (dateTime.getHour() >= 12 && dateTime.getHour() < 18) {
-            dayPart += "Good afternoon, ";
-        }
-        if (dateTime.getHour() >= 18 && dateTime.getHour() <= 23) {
-            dayPart += "Good evening, ";
-        }
-
-        assertTrue(tc.greetUser("anyName").contains(dayPart));
+        LocalDateTime dateTime = LocalDateTime.of(2021, 8, 4, 13, 15);
+        String outcome = "Good afternoon, ";
+        assertEquals(outcome, tc.greetDay(dateTime));
     }
 }
